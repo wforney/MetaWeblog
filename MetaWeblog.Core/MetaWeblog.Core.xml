@@ -1,0 +1,800 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MetaWeblog.Core</name>
+    </assembly>
+    <members>
+        <member name="T:MetaWeblog.Author">
+            <summary>
+            The author class.
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.Author.DisplayName">
+            <summary>
+            Gets or sets the display name.
+            </summary>
+            <value>The display name.</value>
+        </member>
+        <member name="P:MetaWeblog.Author.MetaValue">
+            <summary>
+            Gets or sets the meta value.
+            </summary>
+            <value>The meta value.</value>
+        </member>
+        <member name="P:MetaWeblog.Author.UserId">
+            <summary>
+            Gets or sets the user identifier.
+            </summary>
+            <value>The user identifier.</value>
+        </member>
+        <member name="P:MetaWeblog.Author.UserLogin">
+            <summary>
+            Gets or sets the user login.
+            </summary>
+            <value>The user login.</value>
+        </member>
+        <member name="T:MetaWeblog.BlogInfo">
+            <summary>
+            The blog information class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.BlogInfo.BlogId">
+            <summary>
+            The blog identifier
+            </summary>
+        </member>
+        <member name="F:MetaWeblog.BlogInfo.BlogName">
+            <summary>
+            The blog name
+            </summary>
+        </member>
+        <member name="F:MetaWeblog.BlogInfo.Url">
+            <summary>
+            The blog URL
+            </summary>
+        </member>
+        <member name="T:MetaWeblog.CategoryInfo">
+            <summary>
+            The category information class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.CategoryInfo.CategoryId">
+            <summary>
+            Gets or sets the category identifier.
+            </summary>
+            <value>The category identifier.</value>
+        </member>
+        <member name="P:MetaWeblog.CategoryInfo.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:MetaWeblog.CategoryInfo.HtmlUrl">
+            <summary>
+            Gets or sets the HTML URL.
+            </summary>
+            <value>The HTML URL.</value>
+        </member>
+        <member name="P:MetaWeblog.CategoryInfo.RssUrl">
+            <summary>
+            Gets or sets the RSS URL.
+            </summary>
+            <value>The RSS URL.</value>
+        </member>
+        <member name="P:MetaWeblog.CategoryInfo.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="T:MetaWeblog.DateTimeExtensions">
+            <summary>
+            The <see cref="T:System.DateTime"/> extension methods class
+            </summary>
+        </member>
+        <member name="M:MetaWeblog.DateTimeExtensions.ToISO8601String(System.DateTime)">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the specified <paramref name="dateTime"/>.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>A <see cref="T:System.String" /> that represents the specified <paramref name="dateTime"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.DateTimeExtensions.ParseISO8601(System.String,System.MidpointRounding,System.Boolean,System.Boolean)">
+            <summary>
+            Parses the specified <see cref="T:System.String"/> as an ISO8601 formatted <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="dateString">The date string.</param>
+            <param name="rounding">The rounding.</param>
+            <param name="allowTwoYear">if set to <c>true</c> [allow two year].</param>
+            <param name="leapSecondMeansNextDay">if set to <c>true</c> [leap second means next day].</param>
+            <returns>The parsed <see cref="T:System.DateTime"/>.</returns>
+            <exception cref="T:System.FormatException">
+            The date string is in an invalid format.
+            </exception>
+            <remarks>
+            Slightly modified and borrowed from https://stackoverflow.com/questions/31243985/how-to-do-formally-correct-parsing-of-iso8601-date-times-in-net/31246449#31246449
+            </remarks>
+        </member>
+        <member name="T:MetaWeblog.Enclosure">
+            <summary>
+            The enclosure class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.Enclosure.Length">
+            <summary>
+            Gets or sets the length.
+            </summary>
+            <value>The length.</value>
+        </member>
+        <member name="P:MetaWeblog.Enclosure.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="P:MetaWeblog.Enclosure.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+            <value>The URL.</value>
+        </member>
+        <member name="T:MetaWeblog.IMetaWeblogProvider">
+            <summary>
+            The MetaWeblog provider interface.
+            </summary>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.AddCategoryAsync(System.String,System.String,System.String,MetaWeblog.NewCategory)">
+            <summary>
+            Adds a new category.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="category">The category.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.AddPageAsync(System.String,System.String,System.String,MetaWeblog.Page,System.Boolean)">
+            <summary>
+            Adds a new page.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="page">The page.</param>
+            <param name="publish">if set to <c>true</c> the page will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.AddPostAsync(System.String,System.String,System.String,MetaWeblog.Post,System.Boolean)">
+            <summary>
+            Adds a new post.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="post">The post.</param>
+            <param name="publish">if set to <c>true</c> the post will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.DeletePageAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Deletes the specified page.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="pageid">The page identifier.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> indicating whether the page was successfully deleted.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.DeletePostAsync(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Deletes the specified post.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="postid">The post identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="publish">if set to <c>true</c> the post was marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> indicating whether the post was successfully deleted.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.EditPageAsync(System.String,System.String,System.String,System.String,MetaWeblog.Page,System.Boolean)">
+            <summary>
+            Edits the specified page.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="pageid">The page identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="page">The page.</param>
+            <param name="publish">if set to <c>true</c> the page will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> indicating whether the page was successfully edited.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.EditPostAsync(System.String,System.String,System.String,MetaWeblog.Post,System.Boolean)">
+            <summary>
+            Edits the specified post.
+            </summary>
+            <param name="postid">The post identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="post">The post.</param>
+            <param name="publish">if set to <c>true</c> the post will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> indicating whether the post was successfully edited.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetAuthorsAsync(System.String,System.String,System.String)">
+            <summary>
+            Gets an array of the authors for the specified blog.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> yielding an array of <see cref="T:MetaWeblog.Author"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetCategoriesAsync(System.String,System.String,System.String)">
+            <summary>
+            Gets an array of the categories for the specified blog.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> yielding an array of <see cref="T:MetaWeblog.CategoryInfo"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetPostAsync(System.String,System.String,System.String)">
+            <summary>
+            Gets the specified post.
+            </summary>
+            <param name="postid">The post identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetRecentPostsAsync(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Gets the recent posts for the specified blog.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="numberOfPosts">The number of posts to retrieve.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> yielding an array of <see cref="T:MetaWeblog.Post"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetPageAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets the specified page.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="pageid">The page identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetPagesAsync(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Gets the pages.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="numPages">The number pages.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> yielding an array of <see cref="T:MetaWeblog.Page"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetUserInfoAsync(System.String,System.String,System.String)">
+            <summary>
+            Gets the user information.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.GetUsersBlogsAsync(System.String,System.String,System.String)">
+            <summary>
+            Gets the blogs for the specified user.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> yielding an array of <see cref="T:MetaWeblog.BlogInfo"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.IMetaWeblogProvider.NewMediaObjectAsync(System.String,System.String,System.String,MetaWeblog.MediaObject)">
+            <summary>
+            Creates a new media object.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="mediaObject">The media object.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+        <member name="T:MetaWeblog.MediaObject">
+            <summary>
+            The media object class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.MediaObject.Bits">
+            <summary>
+            Gets or sets the bits.
+            </summary>
+            <value>The bits.</value>
+        </member>
+        <member name="P:MetaWeblog.MediaObject.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:MetaWeblog.MediaObject.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="T:MetaWeblog.MediaObjectInfo">
+            <summary>
+            The media object information class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.MediaObjectInfo.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+            <value>The URL.</value>
+        </member>
+        <member name="T:MetaWeblog.MetaWeblogException">
+            <summary>
+            The MetaWeblog exception class.
+            Implements the <see cref="T:System.Exception" />
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="P:MetaWeblog.MetaWeblogException.Code">
+            <summary>
+            Gets the code.
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogException.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MetaWeblog.MetaWeblogException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="code">The code.</param>
+        </member>
+        <member name="T:MetaWeblog.MetaWeblogService">
+            <summary>
+            The MetaWeblog service.
+            Implements the <see cref="T:MetaWeblog.XmlRpcService" />
+            Implements the <see cref="T:MetaWeblog.XmlRpcService" />
+            Implements the <see cref="T:MetaWeblog.IMetaWeblogProvider" />
+            </summary>
+            <seealso cref="T:MetaWeblog.XmlRpcService" />
+            <seealso cref="T:MetaWeblog.IMetaWeblogProvider" />
+            <seealso cref="T:MetaWeblog.XmlRpcService" />
+        </member>
+        <member name="F:MetaWeblog.MetaWeblogService.logger">
+            <summary>
+            The logger
+            </summary>
+        </member>
+        <member name="F:MetaWeblog.MetaWeblogService.provider">
+            <summary>
+            The provider
+            </summary>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.#ctor(MetaWeblog.IMetaWeblogProvider,Microsoft.Extensions.Logging.ILogger{MetaWeblog.MetaWeblogService})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MetaWeblog.MetaWeblogService" /> class.
+            </summary>
+            <param name="provider">The provider.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetUsersBlogsAsync(System.String,System.String,System.String)">
+            <summary>
+            get users blogs as an asynchronous operation.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task" /> yielding an array of <see cref="T:MetaWeblog.BlogInfo" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetUserInfoAsync(System.String,System.String,System.String)">
+            <summary>
+            get user information as an asynchronous operation.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.AddCategoryAsync(System.String,System.String,System.String,MetaWeblog.NewCategory)">
+            <summary>
+            add category as an asynchronous operation.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="category">The category.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetPostAsync(System.String,System.String,System.String)">
+            <summary>
+            get post as an asynchronous operation.
+            </summary>
+            <param name="postid">The post identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetRecentPostsAsync(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            get recent posts as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="numberOfPosts">The number of posts to retrieve.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task" /> yielding an array of <see cref="T:MetaWeblog.Post" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.AddPostAsync(System.String,System.String,System.String,MetaWeblog.Post,System.Boolean)">
+            <summary>
+            add post as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="post">The post.</param>
+            <param name="publish">if set to <c>true</c> the post will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.EditPostAsync(System.String,System.String,System.String,MetaWeblog.Post,System.Boolean)">
+            <summary>
+            edit post as an asynchronous operation.
+            </summary>
+            <param name="postid">The post identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="post">The post.</param>
+            <param name="publish">if set to <c>true</c> the post will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" /> indicating whether the post was successfully edited.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.DeletePostAsync(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            delete post as an asynchronous operation.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="postid">The post identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="publish">if set to <c>true</c> the post was marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" /> indicating whether the post was successfully deleted.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetCategoriesAsync(System.String,System.String,System.String)">
+            <summary>
+            get categories as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task" /> yielding an array of <see cref="T:MetaWeblog.CategoryInfo" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.NewMediaObjectAsync(System.String,System.String,System.String,MetaWeblog.MediaObject)">
+            <summary>
+            new media object as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="mediaObject">The media object.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetPageAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            get page as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="pageid">The page identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetPagesAsync(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            get pages as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="numPages">The number pages.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task" /> yielding an array of <see cref="T:MetaWeblog.Page" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.GetAuthorsAsync(System.String,System.String,System.String)">
+            <summary>
+            get authors as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task" /> yielding an array of <see cref="T:MetaWeblog.Author" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.AddPageAsync(System.String,System.String,System.String,MetaWeblog.Page,System.Boolean)">
+            <summary>
+            add page as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="page">The page.</param>
+            <param name="publish">if set to <c>true</c> the page will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.EditPageAsync(System.String,System.String,System.String,System.String,MetaWeblog.Page,System.Boolean)">
+            <summary>
+            edit page as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="pageid">The page identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="page">The page.</param>
+            <param name="publish">if set to <c>true</c> the page will be marked as published.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" /> indicating whether the page was successfully edited.</returns>
+        </member>
+        <member name="M:MetaWeblog.MetaWeblogService.DeletePageAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            delete page as an asynchronous operation.
+            </summary>
+            <param name="blogid">The blog identifier.</param>
+            <param name="username">The name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="pageid">The page identifier.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1" /> indicating whether the page was successfully deleted.</returns>
+        </member>
+        <member name="T:MetaWeblog.NewCategory">
+            <summary>
+            The new category class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.NewCategory.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:MetaWeblog.NewCategory.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:MetaWeblog.NewCategory.ParentId">
+            <summary>
+            Gets or sets the parent identifier.
+            </summary>
+            <value>The parent identifier.</value>
+        </member>
+        <member name="P:MetaWeblog.NewCategory.Slug">
+            <summary>
+            Gets or sets the slug.
+            </summary>
+            <value>The slug.</value>
+        </member>
+        <member name="T:MetaWeblog.Page">
+            <summary>
+            The page class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.Page.Categories">
+            <summary>
+            Gets or sets the categories.
+            </summary>
+            <value>The categories.</value>
+        </member>
+        <member name="P:MetaWeblog.Page.DateCreated">
+            <summary>
+            Gets or sets the date created.
+            </summary>
+            <value>The date created.</value>
+        </member>
+        <member name="P:MetaWeblog.Page.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:MetaWeblog.Page.PageId">
+            <summary>
+            Gets or sets the page identifier.
+            </summary>
+            <value>The page identifier.</value>
+        </member>
+        <member name="P:MetaWeblog.Page.PageParentId">
+            <summary>
+            Gets or sets the page parent identifier.
+            </summary>
+            <value>The page parent identifier.</value>
+        </member>
+        <member name="P:MetaWeblog.Page.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:MetaWeblog.Page.WordPressAuthorId">
+            <summary>
+            Gets or sets the WordPress author identifier.
+            </summary>
+            <value>The WordPress author identifier.</value>
+        </member>
+        <member name="T:MetaWeblog.Post">
+            <summary>
+            The post class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.Post.Categories">
+            <summary>
+            Gets or sets the categories.
+            </summary>
+            <value>The categories.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.DateCreated">
+            <summary>
+            Gets or sets the date created.
+            </summary>
+            <value>The date created.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.Link">
+            <summary>
+            Gets or sets the link.
+            </summary>
+            <value>The link.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.MTExcerpt">
+            <summary>
+            Gets or sets the MT excerpt.
+            </summary>
+            <value>The MT excerpt.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.Permalink">
+            <summary>
+            Gets or sets the permalink.
+            </summary>
+            <value>The permalink.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.PostId">
+            <summary>
+            Gets or sets the post identifier.
+            </summary>
+            <value>The post identifier.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.UserId">
+            <summary>
+            Gets or sets the user identifier.
+            </summary>
+            <value>The user identifier.</value>
+        </member>
+        <member name="P:MetaWeblog.Post.WordPressSlug">
+            <summary>
+            Gets or sets the WordPress slug.
+            </summary>
+            <value>The WordPress slug.</value>
+        </member>
+        <member name="T:MetaWeblog.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:MetaWeblog.Source">
+            <summary>
+            The source class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.Source.Name">
+            <summary>
+            Gets or sets the name of the source.
+            </summary>
+            <value>The name of the source.</value>
+        </member>
+        <member name="P:MetaWeblog.Source.Url">
+            <summary>
+            Gets or sets the source URL.
+            </summary>
+            <value>The source URL.</value>
+        </member>
+        <member name="T:MetaWeblog.UserInfo">
+            <summary>
+            The user information class
+            </summary>
+        </member>
+        <member name="P:MetaWeblog.UserInfo.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="P:MetaWeblog.UserInfo.FirstName">
+            <summary>
+            Gets or sets the first name.
+            </summary>
+            <value>The first name.</value>
+        </member>
+        <member name="P:MetaWeblog.UserInfo.LastName">
+            <summary>
+            Gets or sets the last name.
+            </summary>
+            <value>The last name.</value>
+        </member>
+        <member name="P:MetaWeblog.UserInfo.Nickname">
+            <summary>
+            Gets or sets the nickname.
+            </summary>
+            <value>The nickname.</value>
+        </member>
+        <member name="P:MetaWeblog.UserInfo.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+            <value>The URL.</value>
+        </member>
+        <member name="P:MetaWeblog.UserInfo.UserId">
+            <summary>
+            Gets or sets the user identifier.
+            </summary>
+            <value>The user identifier.</value>
+        </member>
+        <member name="T:MetaWeblog.XmlRpcMethodAttribute">
+            <summary>
+            The XML RPC method attribute class.
+            </summary>
+        </member>
+        <member name="M:MetaWeblog.XmlRpcMethodAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MetaWeblog.XmlRpcMethodAttribute"/> class.
+            </summary>
+            <param name="methodName">Name of the method.</param>
+        </member>
+        <member name="P:MetaWeblog.XmlRpcMethodAttribute.MethodName">
+            <summary>
+            Gets or sets the name of the method.
+            </summary>
+            <value>The name of the method.</value>
+        </member>
+        <member name="T:MetaWeblog.XmlRpcService">
+            <summary>
+            The XML RPC service class.
+            </summary>
+        </member>
+        <member name="M:MetaWeblog.XmlRpcService.#ctor(Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MetaWeblog.XmlRpcService"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:MetaWeblog.XmlRpcService.InvokeAsync(System.String)">
+            <summary>Invokes the service.</summary>
+            <param name="xml">The XML.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/>.</returns>
+        </member>
+    </members>
+</doc>
