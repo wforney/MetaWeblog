@@ -4,6 +4,48 @@
         <name>MetaWeblog.Web</name>
     </assembly>
     <members>
+        <member name="T:MetaWeblog.Web.MetaWeblogExtensions">
+            <summary>
+            The MetaWeblog extension method class
+            </summary>
+        </member>
+        <member name="M:MetaWeblog.Web.MetaWeblogExtensions.UseMetaWeblog(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            Use the MetaWeblog middleware.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="path">The path.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.</returns>
+        </member>
+        <member name="M:MetaWeblog.Web.MetaWeblogExtensions.AddMetaWeblog``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the MetaWeblog service.
+            </summary>
+            <typeparam name="TImplementation">The type of the implementation.</typeparam>
+            <param name="coll">The service collection.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</returns>
+        </member>
+        <member name="T:MetaWeblog.Web.MetaWeblogMiddleware">
+            <summary>
+            The MetaWeblog middleware class
+            </summary>
+        </member>
+        <member name="M:MetaWeblog.Web.MetaWeblogMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILoggerFactory,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MetaWeblog.Web.MetaWeblogMiddleware"/> class.
+            </summary>
+            <param name="next">The next request delegate.</param>
+            <param name="loggerFactory">The logger factory.</param>
+            <param name="urlEndpoint">The URL endpoint.</param>
+        </member>
+        <member name="M:MetaWeblog.Web.MetaWeblogMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext,MetaWeblog.MetaWeblogService)">
+            <summary>
+            Invokes the service for the specified request.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="service">The service.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/>.</returns>
+        </member>
         <member name="T:MetaWeblog.Web.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

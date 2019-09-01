@@ -363,12 +363,10 @@
             <summary>
             The MetaWeblog service.
             Implements the <see cref="T:MetaWeblog.XmlRpcService" />
-            Implements the <see cref="T:MetaWeblog.XmlRpcService" />
             Implements the <see cref="T:MetaWeblog.IMetaWeblogProvider" />
             </summary>
             <seealso cref="T:MetaWeblog.XmlRpcService" />
             <seealso cref="T:MetaWeblog.IMetaWeblogProvider" />
-            <seealso cref="T:MetaWeblog.XmlRpcService" />
         </member>
         <member name="F:MetaWeblog.MetaWeblogService.logger">
             <summary>
