@@ -1,5 +1,11 @@
 # MetaWeblog
-A C# implementation of the MetaWeblog API for ASP.NET Core partially based on Shawn Wildermuth's implementation found here: https://github.com/shawnwildermuth/MetaWeblog
+
+A C# implementation of the MetaWeblog API for ASP.NET Core partially based on Shawn Wildermuth's implementation.
+
+[![Build status](https://dev.azure.com/improvgroup/MetaWeblog/_apis/build/status/MetaWeblog-ASP.NET%20Core-CI)](https://dev.azure.com/improvgroup/MetaWeblog/_build/latest?definitionId=32)
+![](https://vsrm.dev.azure.com/improvgroup/_apis/public/Release/badge/4f5f5de5-83a0-4499-bf9e-f3e652fcb795/1/1)
+
+Shawn's implementation can be found here: https://github.com/shawnwildermuth/MetaWeblog
 
 To use this you need to implement the IMetaWeblogProvider interface...
 
@@ -93,11 +99,11 @@ Then register the service and use it in your Startup.cs file:
 ```C#
     public void ConfigureServices(IServiceCollection svcs)
     {
-      svcs.AddMetaWeblog<MyMetaWeblogService>();
+        svcs.AddMetaWeblog<MyMetaWeblogService>();
     }
 
     public void Configure(IApplicationBuilder app)
     {
-      app.UseMetaWeblog("/livewriter");
+        app.UseMetaWeblog("/livewriter");
     }
 ```
